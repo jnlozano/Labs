@@ -1,0 +1,1748 @@
+'
+'
+'
+'	C:\Users\DKM\Documents\My Experiments\&Downloads\step.psy.cmu.edu\TowerHanoi\TOH\TOHx(Corrected-DKM).ebs
+'	Generated on: 4/28/2011	15:10:18
+'
+'
+'	This file generated with E-Studio interface.
+'	E-Prime Copyright © 1996-2005 Psychology Software Tools.
+'	ALL RIGHTS RESERVED
+'
+'	Legal use of this experiment script requires a full E-Prime or Runtime License.
+'
+'
+'	Author:
+'		Paul F.C. Groot, FPP-ITM (Vrije Universiteit Amsterdam)
+'	Abstract:
+'		TOH by Paul Groot 
+'		 
+'		Vrije Universiteit  
+'		Fac. Psychologie en Pedagogiek  
+'		Van der Boechorststraat 1  
+'		1081 BT AMSTERDAM  
+'		  
+'		+31 20 5988931 
+'		pfc.groot@psy.vu.nl  
+'		so@psy.vu.nl  
+'		  
+'		© 2004-2005, Vrije Universiteit van Amsterdam 
+'		  
+'		created 2004 
+'		 
+'		Slight correction by David K. McFarlane, Dept. Psychology, 
+'		Michigan State University, E.Lansing, Michigan, USA. 
+'		28 Apr 2011 
+'		
+'
+'
+'
+'
+
+Option CStrings On
+Dim ebContext as Context
+
+
+'--------------------------------------------------------------------------
+' Class Declarations
+'--------------------------------------------------------------------------
+
+
+
+'--------------------------------------------------------------------------
+'InitTextDisplayDefaults
+'--------------------------------------------------------------------------
+Sub InitTextDisplayDefaults(theTextDisplay As TextDisplay)
+
+	If theTextDisplay Is Nothing Then Exit Sub
+
+	theTextDisplay.X = "center"
+	theTextDisplay.Y = "center"
+	theTextDisplay.Width = "100%"
+	theTextDisplay.Height = "100%"
+	theTextDisplay.ForeColor = CColor("black")
+	theTextDisplay.BackColor = CColor("white")
+	theTextDisplay.BackStyle = "opaque"
+	theTextDisplay.BorderColor = CColor("black")
+	theTextDisplay.BorderWidth = CLng("0")
+	theTextDisplay.XAlign = "center"
+	theTextDisplay.YAlign = "center"
+	theTextDisplay.AlignHorizontal = "center"
+	theTextDisplay.AlignVertical = "center"
+	theTextDisplay.WordWrap = True
+	theTextDisplay.ClearAfter = CLogical("No")
+	theTextDisplay.FontName = "Courier New"
+	theTextDisplay.FontSize = "18"
+	theTextDisplay.FontBold = CLogical("Yes")
+	theTextDisplay.FontItalic = CLogical("No")
+	theTextDisplay.FontUnderline = CLogical("No")
+	theTextDisplay.FontStrikeout = CLogical("No")
+
+End Sub
+
+
+
+
+
+
+
+
+'--------------------------------------------------------------------------
+'InitSlideStateDefaults
+'--------------------------------------------------------------------------
+Sub InitSlideStateDefaults(theSlideState As SlideState)
+
+	If theSlideState Is Nothing Then Exit Sub
+
+	theSlideState.X = "center"
+	theSlideState.Y = "center"
+	theSlideState.Width = "100%"
+	theSlideState.Height = "100%"
+	theSlideState.BackColor = CColor("white")
+	theSlideState.BackStyle = "opaque"
+	theSlideState.BorderColor = CColor("black")
+	theSlideState.BorderWidth = CLng("0")
+	theSlideState.XAlign = "center"
+	theSlideState.YAlign = "center"
+	theSlideState.ClearAfter = CLogical("No")
+	theSlideState.Enabled = CLogical("Yes")
+
+End Sub
+
+'--------------------------------------------------------------------------
+'InitSlideVisualStimDefaults
+'--------------------------------------------------------------------------
+Sub InitSlideVisualStimDefaults(theSlideVisualStim As SlideVisualStim)
+
+	If theSlideVisualStim Is Nothing Then Exit Sub
+
+	theSlideVisualStim.X = "center"
+	theSlideVisualStim.Y = "center"
+	theSlideVisualStim.Width = "25%"
+	theSlideVisualStim.Height = "25%"
+	theSlideVisualStim.ForeColor = CColor("black")
+	theSlideVisualStim.BackColor = CColor("white")
+	theSlideVisualStim.BackStyle = "opaque"
+	theSlideVisualStim.BorderColor = CColor("black")
+	theSlideVisualStim.BorderWidth = CLng("0")
+	theSlideVisualStim.XAlign = "center"
+	theSlideVisualStim.YAlign = "center"
+	theSlideVisualStim.AlignHorizontal = "center"
+	theSlideVisualStim.AlignVertical = "center"
+
+End Sub
+
+'--------------------------------------------------------------------------
+'InitSlideTextDefaults
+'--------------------------------------------------------------------------
+Sub InitSlideTextDefaults(theSlideText As SlideText)
+
+	If theSlideText Is Nothing Then Exit Sub
+
+	InitSlideVisualStimDefaults theSlideText
+
+	theSlideText.WordWrap = True
+	theSlideText.FontName = "Courier New"
+	theSlideText.FontSize = "18"
+	theSlideText.FontBold = CLogical("Yes")
+	theSlideText.FontItalic = CLogical("No")
+	theSlideText.FontUnderline = CLogical("No")
+	theSlideText.FontStrikeout = CLogical("No")
+
+End Sub
+
+'--------------------------------------------------------------------------
+'InitSlideImageDefaults
+'--------------------------------------------------------------------------
+Sub InitSlideImageDefaults(theSlideImage As SlideImage)
+
+	If theSlideImage Is Nothing Then Exit Sub
+
+	InitSlideVisualStimDefaults theSlideImage
+
+	theSlideImage.Stretch = CLogical("No")
+	theSlideImage.MirrorLeftRight = CLogical("No")
+	theSlideImage.MirrorUpDown = CLogical("No")
+	theSlideImage.UseSourceColorKey = CLogical("No")
+	theSlideImage.SourceColorKey = CColor("black")
+
+End Sub
+
+'--------------------------------------------------------------------------
+'InitSlideSoundBufferDefaults
+'--------------------------------------------------------------------------
+Sub InitSlideSoundBufferDefaults(theSoundBuffer As SoundBuffer)
+
+	If theSoundBuffer Is Nothing Then Exit Sub
+
+	theSoundBuffer.Loop = CLogical("No")
+	theSoundBuffer.StopAfter = CLogical("Yes")
+	theSoundBuffer.StartOffset = "0"
+	theSoundBuffer.StopOffset = "0"
+
+End Sub
+
+
+
+
+
+
+'--------------------------------------------------------------------------
+' Instance Declarations
+'--------------------------------------------------------------------------
+Dim Display As DisplayDevice
+Dim Sound As SoundDevice
+Dim Keyboard As KeyboardDevice
+Dim Mouse As MouseDevice
+Dim ActionList As List
+
+Dim MoveProc As Procedure
+
+Dim TrialProc As Procedure
+
+Dim TrialList As List
+
+Dim RootProc As Procedure
+
+Dim GoodbeyText As TextDisplay
+Dim GoodbeyTextEchoClients As EchoClientCollection
+
+Dim WaitForRespons As TextDisplay
+Dim WaitForResponsEchoClients As EchoClientCollection
+
+Dim DelayRespons As TextDisplay
+Dim DelayResponsEchoClients As EchoClientCollection
+
+Dim Title As TextDisplay
+
+Dim Feedback As Slide
+Dim Feedback_State As SlideState
+Dim Feedback_SlideText As SlideText
+
+Dim OK As TextDisplay
+
+Dim TrialIntro As Slide
+Dim TrialIntro_State As SlideState
+Dim TrialIntro_SlideText As SlideText
+
+
+
+'--------------------------------------------------------------------------
+' Package Declare Script
+'--------------------------------------------------------------------------
+
+
+
+'--------------------------------------------------------------------------
+' User Script
+'--------------------------------------------------------------------------
+
+' Constants - Rods, rodplaces
+Const NOROD as integer = -1
+Const LEFTROD as integer = 0
+Const MIDROD as integer = 1
+Const RIGHTROD as integer = 2
+
+' temporary helper variabeles
+dim iRod as long ' zero based
+' Explicit attributes saved for each trial:
+' Errors : numbers of wrong attempts
+' NrMoves: number of moves
+' FirstDown: time of first mouse event
+' FirstOnset: onset time of trial
+' ThinkTime1: FirstDown-FirstOnset
+' ThinkTime: time between last mouse event and FirstOnset
+
+
+dim iLevel as Long ' zero based
+
+' Constants - Number of discs
+Const RODEMPTY as integer = 0
+Const N_DISCS as Integer = 4
+Const NODISC as integer = 0
+
+' indices for CorrectMoves(?,)
+Const UP% = 0
+Const DOWN% = 1
+Const MAX_MOVES% = 32
+
+' Define areas
+Const NOAREA as integer = -1
+
+' The matrices that hold the disk numbers on each stack (rod) -- zero based indices
+dim Subject (LEFTROD to RIGHTROD, N_DISCS-1) as integer 
+dim Target (LEFTROD to RIGHTROD, N_DISCS-1) as integer
+dim DiscPositions (LEFTROD to RIGHTROD, N_DISCS-1) as Rect ' screen coordinates of drawn discs (for hit testing)
+dim DiscColors(N_DISCS) as String ' 0 is selected disc
+dim SubjectDiscCount(LEFTROD to RIGHTROD) as integer ' the number of disks on each rod
+dim TargetDiscCount(LEFTROD to RIGHTROD) as integer ' dito, for the target
+dim CorrectMoves(0 to 1, MAX_MOVES) as integer
+dim SelectedRod as integer
+dim iUpOrDown as integer
+dim iMove as integer
+dim nRequiredMoves as integer
+dim bRestart as boolean
+dim bResetTrial as boolean
+dim nErrors as integer
+dim nTotalErrors as long
+dim lTotalTT1 as long
+dim lTotalTT as long
+dim lOnsetTime as long
+dim lFirstOnsetTime as long
+dim lFirstDownTime as long ' including erroneous moves
+'dim lLastFirstMoveTime as long ' only last move series
+dim lLastDownTime as long
+dim NumberOfMoves as integer
+'dim LastNumberOfMoves as integer
+dim completed as boolean
+
+' System variables
+dim cnvs as Canvas
+
+Sub DrawStack(cnvs As Canvas, byval iRod as Long, byval x1 as Integer, byval y1 as Integer, byval x2 as Integer, byval y2 as Integer, byval bTarget as boolean)
+	' (x1,y1) is top left
+	' (x2,y2) is bottom right
+	dim iDiskHeight as integer
+	dim iDiskRadius as Integer
+	dim iDiskRadiusIncrement as Integer
+	dim iDiskRadiusMin as integer
+	dim iDiskRadiusMax as integer
+	Dim i as Integer
+'	Dim cnvs As Canvas
+	dim bStop as boolean
+	dim iSelectedDisc as integer
+	if not bTarget and SelectedRod=iRod then iSelectedDisc = SubjectDiscCount(iRod) - 1 else iSelectedDisc = -1
+
+	iDiskHeight = (y2 - y1)/(N_DISCS+0.5)
+	iDiskRadiusMax = (x2-x1)/2
+	iDiskRadiusMin = iDiskRadiusMax/2
+	iDiskRadiusIncrement = (iDiskRadiusMax-iDiskRadiusMin)/(N_DISCS-1)
+'	Debug.Print "iDiskHeight = " & iDiskHeight
+'	Debug.Print "iDiskRadiusMax = " & iDiskRadiusMax
+	'Set cnvs = Display.Canvas
+	cnvs.PenWidth = "0"
+	cnvs.BackStyle = "opaque"
+	cnvs.FillColor = CColor("gray") ' rod or pole color
+	cnvs.Rectangle CInt((x1+x2)/2-iDiskRadiusMin/6), y1, iDiskRadiusMin/3, y2-y1  
+
+	for i = 1 to N_DISCS
+		dim iDiskSize as integer
+		dim r as rect
+		if bTarget then iDiskSize = Target(iRod,i-1) else iDiskSize = Subject(iRod,i-1) ' 1==smallest, 0==NODISC==none
+		if iDiskSize=NODISC then 
+			if not bTarget then ' remember rectangle of lower TOH for hit-testing
+				iDiskSize = 1 ' only store position of an invisible small (and high) disk to enable destination hits
+				r.Left = (x1+x2)/2-iDiskRadiusMin
+				r.Top = y1
+				r.Right = (x1+x2)/2+iDiskRadiusMin
+				r.Bottom = y2-(i-1)*iDiskHeight
+				'draw hit area during test
+				'cnvs.FillColor = CColor("yellow")
+				'cnvs.RoundedRectangle r.Left, r.Top, r.Right-r.Left, r.Bottom-r.Top, 30, 30  
+ 				DiscPositions(iRod,i-1) = r 
+			end if
+ 			exit for
+		else
+			iDiskRadius = iDiskRadiusMin+(iDiskSize-1)*iDiskRadiusIncrement
+			r.Left = (x1+x2)/2-iDiskRadius
+			r.Top = y2-i*iDiskHeight
+			r.Right = (x1+x2)/2+iDiskRadius
+			r.Bottom = r.Top + iDiskHeight
+			if not bTarget then DiscPositions(iRod,i-1) = r ' remember rectangle of lower TOH for hit-testing
+			if iSelectedDisc=i-1 then 
+'				cnvs.FillColor = CColor("red") 
+				cnvs.FillColor = CColor(DiscColors(0))
+			else 
+'				cnvs.FillColor = CColor("green")
+				cnvs.FillColor = CColor(DiscColors(iDiskSize))
+			end if
+			cnvs.PenColor = cnvs.FillColor
+			cnvs.RoundedRectangle r.Left, r.Top, r.Right-r.Left, r.Bottom-r.Top, iDiskHeight/2, iDiskHeight/2  
+		end if  
+	next
+end sub
+
+
+sub DrawTOH(cnvs as Canvas, byval x%, byval y%, byval w%, byval h%, byval bTarget as boolean)
+	cnvs.BackStyle = "opaque"
+	cnvs.FillColor = CColor("0,51,153") ' basement color
+	cnvs.PenWidth = "0"
+	cnvs.Rectangle x-10, y+h, 3*w+20, h/6  
+	for iRod=LEFTROD to RIGHTROD
+		DrawStack cnvs, iRod, x, y, x+w, y+h, bTarget
+		x = x + w
+	next
+end sub
+
+
+sub InitTOH(s as string, discs() as integer, disccount() as integer)
+	dim t as string
+	dim i as Integer
+	dim iDiskSize as Integer
+
+	for iRod=LEFTROD to RIGHTROD
+		disccount(iRod) = 0
+		for iLevel=0 to N_DISCS-1
+			discs(iRod,iLevel)=0
+		next
+	next
+
+	iRod = 0
+	iLevel = 0
+	for i=1 to Len(s)
+		t = Mid$(s,i,1)
+		if t="_" then
+			iRod = iRod + 1
+			iLevel = 0
+		else
+			iDiskSize = CInt(t)
+			Debug.Assert iDiskSize<=N_DISCS
+			if iDiskSize>0 then
+				Debug.Assert iLevel<N_DISCS
+				discs(iRod,iLevel) = iDiskSize
+				iLevel = iLevel + 1
+				disccount(iRod) = iLevel 
+			end if
+		end if
+	next
+end sub
+
+
+Function HitTest(byRef x as Long, byRef y as Long, bDestination as boolean) as boolean
+	' on entry (x,y) is point under test (ie. mouse pos)
+	' on exit (x, y) will be resp. rod and level
+	' bDestination indicates if this hit test is for source discs or destination targets
+	dim bMatch as boolean
+	dim pt as Point
+	pt.x = x
+	pt.y = y
+	for iRod=LEFTROD to RIGHTROD
+		for iLevel=0 to N_DISCS-1
+			if Subject(iRod,iLevel)=NODISC then
+				if bDestination then
+					bMatch = PointInRect(pt, DiscPositions(iRod,iLevel))
+				end if
+				exit for
+			end if
+			if not bDestination then 
+				bMatch = PointInRect(pt, DiscPositions(iRod,iLevel))
+				if bMatch then exit for
+			end if
+		next
+		if bMatch then exit for
+	next
+	if bMatch then 
+		x = iRod
+		y = iLevel
+		HitTest = true
+	else
+		x = NOROD
+		y = 0
+		HitTest = false
+	end if
+end function
+
+'Function GetSubjectStack(iRod as Long) as String
+' leeg       = leeg == 0
+' small disc = Kl == 1
+' medium     = Mi == 2
+' large      = Gr == 3
+'	dim strImage as String
+'	dim iLevel as Integer
+'	for iLevel=0 to N_DISCS-1
+'		if Subject(iRod,iLevel)=NODISC then exit for
+'		strImage = strImage & CStr(Subject(iRod,iLevel))
+'	next
+'	if Len(strImage)=0 then strImage = "0"
+'	if (SubjectDiscCount(iRod)=RODEMPTY) then strImage = "0"
+'
+'	GetSubjectStack = strImage
+'end Function
+
+'Function GetTargetStack(iRod as Long) as String
+'	dim strImage as String
+'	for iLevel=0 to N_DISCS-1
+'		if Target(iRod,iLevel)=NODISC then exit for
+'		strImage = strImage & CStr(Target(iRod,iLevel))
+'	next
+'	if Len(strImage)=0 then strImage = "0"
+'	if (TargetDiscs(iRod)=RODEMPTY) then strImage = "0"
+'	GetTargetStack = strImage
+'end Function
+
+Function MoveDisc(byval destRod as Integer) as boolean
+	' Get size of disc to move
+	dim SizeOfDisc as integer
+	SizeOfDisc = Subject(SelectedRod, SubjectDiscCount(SelectedRod) - 1)
+	
+	' Validate move
+	if (SelectedRod=NOROD) then exit Function
+	if ( SubjectDiscCount(destRod) > 0) then
+		if ( Subject(destRod, SubjectDiscCount(destRod) -1 ) < SizeOfDisc) then exit Function
+	end if
+
+	NumberOfMoves = NumberOfMoves + 1
+
+	' Add to destination
+	Subject(destRod, SubjectDiscCount(destRod)) = SizeOfDisc
+	SubjectDiscCount(destRod) = SubjectDiscCount(destRod) + 1
+
+	' Remove from source
+	Subject(SelectedRod, SubjectDiscCount(SelectedRod) - 1) = NODISC
+	SubjectDiscCount(SelectedRod) = SubjectDiscCount(SelectedRod) - 1
+
+	SelectedRod = NOROD
+	MoveDisc = True
+end Function
+
+'sub ResetMoves()
+'	NumberOfMoves = 0
+'	iMove = 0
+'	bRestart = False
+'end sub
+
+
+'--------------------------------------------------------------------------
+' Package Global Script
+'--------------------------------------------------------------------------
+
+
+
+'--------------------------------------------------------------------------
+' Package Routines
+'--------------------------------------------------------------------------
+
+
+
+'--------------------------------------------------------------------------
+' Implementation
+'--------------------------------------------------------------------------
+Sub MoveProc_Run(c as Context)
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - SetupTrial BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+'SetupTrial:
+
+if bResetTrial then
+
+	' Set the references to the rods
+	SelectedRod = NOROD
+
+	' (re)Init the working disc stack
+	InitTOH c.GetAttrib("InitDiscs"), Subject, SubjectDiscCount
+
+	iMove = 0
+	iUpOrDown = UP
+'	LastNumberOfMoves = 0
+	bRestart = false
+	bResetTrial = false
+	lOnsetTime = 0
+'	lLastFirstMoveTime = 0
+end if
+'	c.SetAttrib "CorrectMoveCount", nRequiredMoves
+
+
+
+
+
+
+
+
+
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - SetupTrial END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - DrawRods BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+Dim cnvs As Canvas
+Set cnvs = Display.Canvas
+'cnvs.FillColor = CColor ("white")
+'Display.WaitForVerticalBlank
+'cnvs.Clear
+
+'Create off-screen canvas
+Dim offScreenCnvs As Canvas
+Set offScreenCnvs = Display.CreateCanvas
+offScreenCnvs.FillColor = CColor ("white")
+offScreenCnvs.Clear
+
+Dim r As Rect
+r.Left = 0
+r.Right = Display.XRes
+r.Top = 0
+r.Bottom = Display.YRes
+
+dim x%, y%, w%, h%
+
+offScreenCnvs.FillColor = CColor ("White")
+offScreenCnvs.Clear
+
+w = Display.XRes/6
+x = Display.XRes/2 - 1.5*w
+h = Display.YRes/4.5
+y = h/3
+DrawTOH offScreenCnvs, x, y, w, h, True
+
+dim strMsg as String
+if iMove<nRequiredMoves then
+	if nRequiredMoves-iMove = 1 then
+		strMsg = "1 step left"
+	else
+		strMsg = CStr(nRequiredMoves-iMove) & " steps left"
+	end if
+else
+	strMsg = "ready"
+end if
+offScreenCnvs.Text  CLng(Display.XRes/2)-Len(strMsg)*4, CLng(Display.YRes/2)-50, strMsg
+
+w = Display.XRes/4
+x = w/2
+h = Display.YRes/3
+y = h/3 + h + h/3
+DrawTOH offScreenCnvs, x, y, w, h, False
+
+
+Display.WaitForVerticalBlank
+cnvs.Copy offScreenCnvs, r, r
+dim tNow as long
+tNow = Clock.ReadMillisec
+if lOnsetTime<=0 then lOnsetTime = tNow
+if lFirstOnsetTime<=0 then lFirstOnsetTime = tNow
+c.SetAttrib "Onset", lOnsetTime
+c.SetAttrib "StimOnset", tNow
+
+' check if we are only drawing the last move after completion...
+if completed then
+	Sleep 1000
+	ActionList.Terminate
+	goto EndOfMove
+end if
+
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - DrawRods END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - ShowMouse BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	Mouse.ShowCursor True
+
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - ShowMouse END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	
+	WaitForRespons.InputMasks.Reset
+	
+	If Mouse.GetState() = ebStateOpen Then
+		WaitForResponsEchoClients.RemoveAll
+		WaitForRespons.InputMasks.Add Mouse.CreateInputMask("{ANY}", "", CLng(WaitForRespons.Duration), CLng("1"), ebEndResponseActionTerminate, CLogical("Yes"), "", "", "")
+
+	
+	End If
+
+	If Keyboard.GetState() = ebStateOpen Then
+		WaitForResponsEchoClients.RemoveAll
+		WaitForRespons.InputMasks.Add Keyboard.CreateInputMask("{ESCAPE}", "", CLng(WaitForRespons.Duration), CLng("1"), ebEndResponseActionTerminate, CLogical("Yes"), "", "", "ResponseMode:All ProcessBackspace:Yes")
+
+	
+	End If
+
+	WaitForRespons.Run
+	c.SetAttrib WaitForRespons.Name & ".OnsetDelay", WaitForRespons.OnsetDelay
+	c.SetAttrib WaitForRespons.Name & ".OnsetTime", WaitForRespons.OnsetTime
+	c.SetAttrib WaitForRespons.Name & ".RTTime", WaitForRespons.RTTime
+	c.SetAttrib WaitForRespons.Name & ".RT", WaitForRespons.RT
+	
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - ReactOnRespons BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+' when we are using instructions, just continue
+'if (c.GetAttrib("Instruction")="true") then MoveUntilTarget.Terminate
+
+'dim theState as SlideState
+dim ptMouse as Point
+dim bHit as Boolean
+dim bMoved as boolean
+dim bSelected as boolean
+dim iCorrectRod%
+
+if WaitForRespons.RESP="{ESCAPE}" then
+	ActionList.Terminate
+	TrialList.Terminate
+	goto EndOfMove
+end if
+
+'set theState = DrawRods.States ("Default")
+Mouse.GetCursorPos ptMouse.x, ptMouse.y
+'strHit = theState.HitTest(ptMouse.x, ptMouse.y)
+
+'dim bHit as boolean
+iRod = ptMouse.x
+iLevel = ptMouse.y
+bHit = HitTest(iRod, iLevel, SelectedRod<>NOROD) ' (iRod, iLevel) = (x,y) on input 
+'if bHit then Debug.Print "Hit " & iRod & " -> " & iLevel
+if (SelectedRod=NOROD) then
+	' nothing selected yet: accepts this selection
+	bSelected = bHit
+	SelectedRod = iRod
+else
+	if Not bHit Or iRod=SelectedRod then 
+		SelectedRod=NOROD ' move canceled
+	else 
+		bMoved = MoveDisc(iRod)
+	end if
+end if
+
+'EndInline:
+		
+c.SetAttrib "Rod", CStr(iRod+1)
+c.SetAttrib "Selected", Iif(bSelected,"1","0")
+c.SetAttrib "Moved", Iif(bMoved,"1","0")
+iCorrectRod = CorrectMoves(IIf(bSelected,UP,DOWN), iMove)
+c.SetAttrib "CRod", CStr(iCorrectRod+1)
+if bMoved then 
+	lLastDownTime = WaitForRespons.RTTime 'Clock.ReadMillisec
+	if lFirstDownTime<=0 then lFirstDownTime = lLastDownTime
+	if iRod<>iCorrectRod  then bRestart = true else iMove = iMove+1
+elseif bSelected then
+'	if lFirstMoveTime<=0 then lFirstMoveTime = WaitForRespons.RTTime' Clock.ReadMillisec
+	if SelectedRod<>iCorrectRod then bRestart = true'MoveUntilTarget.Terminate
+else
+	' move canceled
+	bRestart = false
+end if
+
+'xxx c.SetAttrib "LastFirstMove", lLastFirstMoveTime - lOnsetTime
+
+'Debug.Print "Move = " & iMove
+'Debug.Print "Selected = " & bSelected
+'Debug.Print "Moved = " & bMoved
+'Debug.Print "Restart = " & bRestart
+'Debug.Print "CorrectRod = " & iCorrectRod
+'Debug.Print "iRod = " & iRod
+if bRestart And bMoved then 
+'	MoveUntilTarget.Terminate ' only terminate during move
+	c.SetAttrib "Ready", "-1"
+	nErrors = nErrors + 1
+	Feedback.ActiveState = "Wrong"
+	bResetTrial = true
+'	ResetMoves
+else
+	if bMoved then
+		completed = true
+
+		dim rod as integer
+		dim pos as integer
+
+		for rod = LEFTROD to RIGHTROD
+			for pos = 0 to N_DISCS-1
+				if (Subject(rod, pos) <> Target(rod, pos)) then
+					completed = false
+				end if
+			next pos
+		next rod
+
+	end if
+	if (completed) then
+		c.SetAttrib "Ready", "1" ' last correct move => continue with next
+'		Feedback.ActiveState = "Done"
+'	  	ActionList.Terminate
+		Feedback.ActiveState = "Default"
+		goto EndOfMove ' skip feedback
+	else
+		c.SetAttrib "Ready", "0" ' not finished => just continue
+		Feedback.ActiveState = "Default"
+		goto EndOfMove ' skip feedback
+	end if
+end if
+
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - ReactOnRespons END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - HideMouse BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	Mouse.ShowCursor False
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - HideMouse END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	
+	Select Case Feedback.ActiveState
+		Case "Default"
+
+		Case "Wrong"
+
+
+			Set Feedback_SlideText = CSlideText(Feedback.States.Item("Wrong").Objects(1))
+			Set Feedback_SlideText = Nothing
+	End Select
+
+	Feedback.Run
+	
+	
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - EndOfMove BEGIN
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+EndOfMove:
+	If Err.Number = ebInputAccepted Then
+		Err.Clear
+		Resume EndOfMoveResume
+	ElseIf Err.Number <> 0 Then
+		'NOTE: If you receive a runtime error here, it
+		' is because a runtime error other than ebInputAccepted
+		' was thrown (ebInputAccepted for catching input masks that jump).
+		'You are encouraged to either handle the error so that
+		' it is not thrown in the future or will have to set up
+		' your own error handler, which will also need to take
+		' into account for any input masks that jump.
+		'
+		'Raise the error so the default error handler will show the message
+		Err.Raise Err.Number, Err.Source, Err.Description
+	End If
+
+EndOfMoveResume:
+
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - EndOfMove END
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+	c.SetAttrib WaitForRespons.Name & ".OnsetDelay", WaitForRespons.OnsetDelay
+	c.SetAttrib WaitForRespons.Name & ".OnsetTime", WaitForRespons.OnsetTime
+	c.SetAttrib WaitForRespons.Name & ".RTTime", WaitForRespons.RTTime
+	c.SetAttrib WaitForRespons.Name & ".RT", WaitForRespons.RT
+	
+
+	c.Log
+End Sub
+
+Sub TrialProc_Run(c as Context)
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - InitTrial BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+' initialization for complete series of moeves (including resets after errors)
+'lFirstMoveTime = 0
+lFirstDownTime = 0
+lFirstOnsetTime = 0
+NumberOfMoves = 0
+nErrors = 0
+completed = false
+
+
+	' Init the disc stacks
+'	InitTOH c.GetAttrib("InitDiscs"), Subject, SubjectDiscCount ' must be inside 'loop'
+	InitTOH c.GetAttrib("TargetDiscs"), Target, TargetDiscCount ' just once
+
+	' store correct moves in CorrectMove() array 
+	dim strMoves as string
+	dim strChar as string
+	dim iPos as integer
+	strMoves = c.GetAttrib("CorrectMoves")
+	iMove = 0
+	iUpOrDown = UP
+	for iPos=1 to len(strMoves)
+		strChar = mid$(strMoves,iPos,1)
+		Select Case strChar
+			case "1","2","3"
+				CorrectMoves(iUpOrDown, iMove) = CStr(CInt(strChar)-1)
+				Debug.Assert iMove<MAX_MOVES
+				if iUpOrDown=UP then
+					iUpOrDown = DOWN
+				else
+					iUpOrDown = UP
+					iMove = iMove+1
+				end if
+		End Select
+	next
+	Debug.Assert iUpOrDown=UP
+	CorrectMoves(UP, iMove) = NOROD ' termination symbol at end of array
+	nRequiredMoves = iMove
+	c.SetAttrib "NrReqMoves", CStr(nRequiredMoves)
+
+
+bResetTrial = true ' force first time initialization inside ActionList loop
+
+
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - InitTrial END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	
+	TrialIntro.ActiveState = c.GetAttrib("TrialIntroState")
+	Select Case TrialIntro.ActiveState
+		Case "Default"
+
+
+			Set TrialIntro_SlideText = CSlideText(TrialIntro.States.Item("Default").Objects(1))
+			TrialIntro_SlideText.Text = "The next tower requires " &_ 
+				c.GetAttrib("NrReqMoves") &_ 
+				" steps to be solved."
+			Set TrialIntro_SlideText = Nothing
+		Case "Practice1"
+
+
+			Set TrialIntro_SlideText = CSlideText(TrialIntro.States.Item("Practice1").Objects(1))
+			Set TrialIntro_SlideText = Nothing
+		Case "Practice2"
+
+
+			Set TrialIntro_SlideText = CSlideText(TrialIntro.States.Item("Practice2").Objects(1))
+			Set TrialIntro_SlideText = Nothing
+	End Select
+
+	TrialIntro.Run
+	
+	
+	
+	DelayRespons.InputMasks.Reset
+	
+	If Keyboard.GetState() = ebStateOpen Then
+		DelayResponsEchoClients.RemoveAll
+		DelayRespons.InputMasks.Add Keyboard.CreateInputMask("{SPACE}", "", CLng(DelayRespons.Duration), CLng("1"), ebEndResponseActionTerminate, CLogical("Yes"), "", "", "ResponseMode:All ProcessBackspace:Yes")
+
+	
+	End If
+
+	If Mouse.GetState() = ebStateOpen Then
+		DelayResponsEchoClients.RemoveAll
+		DelayRespons.InputMasks.Add Mouse.CreateInputMask("{ANY}", "", CLng(DelayRespons.Duration), CLng("1"), ebEndResponseActionTerminate, CLogical("Yes"), "", "", "")
+
+	
+	End If
+
+	DelayRespons.Run
+	ActionList.Run c
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - SaveMoves BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+dim lTT1 as Long ' bedenktijd voor eerste move
+dim lTT as Long ' totale bedenktijd
+
+if completed then ' might have escaped
+	lTT1 = lFirstDownTime - lFirstOnsetTime
+	lTT = lLastDownTime - lFirstOnsetTime - nErrors*FeedBack.Duration
+
+	'c.SetAttrib "NumberOfMoves", NumberOfMoves
+	c.SetAttrib "Errors", nErrors
+	c.SetAttrib "NrMoves", NumberOfMoves
+	c.SetAttrib "FirstDown", lFirstDownTime
+	c.SetAttrib "FirstOnset", lFirstOnsetTime
+	c.SetAttrib "ThinkTime1", lTT1
+	c.SetAttrib "ThinkTime", lTT
+
+	if c.GetAttrib("Practice")="0" then
+		nTotalErrors = nTotalErrors + nErrors
+		lTotalTT = lTotalTT + lTT
+		lTotalTT1 = lTotalTT1 + lTT1
+	end if
+end if
+
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - SaveMoves END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	OK.Run
+
+	c.Log
+End Sub
+
+Sub RootProc_Run(c as Context)
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - InitExp BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+
+set cnvs = Display.Canvas
+
+
+DiscColors(0) = "red"
+for iLevel=1 to N_DISCS
+	DiscColors(iLevel) = "0," & CStr(255*iLevel/N_DISCS) & ",0"
+next
+
+if N_DISCS>=1 then DiscColors(1) = "255,153,204"
+if N_DISCS>=2 then DiscColors(2) = "255,255,0"
+if N_DISCS>=3 then DiscColors(3) = "0,204,255"
+if N_DISCS>=4 then DiscColors(4) = "51,204,51"
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - InitExp END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - ClearScreen BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+cnvs.Clear
+
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - ClearScreen END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	Title.Run
+	
+	
+	DelayRespons.InputMasks.Reset
+	
+	If Keyboard.GetState() = ebStateOpen Then
+		DelayResponsEchoClients.RemoveAll
+		DelayRespons.InputMasks.Add Keyboard.CreateInputMask("{SPACE}", "", CLng(DelayRespons.Duration), CLng("1"), ebEndResponseActionTerminate, CLogical("Yes"), "", "", "ResponseMode:All ProcessBackspace:Yes")
+
+	
+	End If
+
+	If Mouse.GetState() = ebStateOpen Then
+		DelayResponsEchoClients.RemoveAll
+		DelayRespons.InputMasks.Add Mouse.CreateInputMask("{ANY}", "", CLng(DelayRespons.Duration), CLng("1"), ebEndResponseActionTerminate, CLogical("Yes"), "", "", "")
+
+	
+	End If
+
+	DelayRespons.Run
+	TrialList.Run c
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - EndTOHExp BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	Mouse.ShowCursor false
+
+c.SetAttrib "SumErrors", nTotalErrors
+c.SetAttrib "SumThinkTime1", lTotalTT1
+c.SetAttrib "SumThinkTime", lTotalTT
+
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - EndTOHExp END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	
+	GoodbeyText.InputMasks.Reset
+	
+	If Keyboard.GetState() = ebStateOpen Then
+		GoodbeyTextEchoClients.RemoveAll
+		GoodbeyText.InputMasks.Add Keyboard.CreateInputMask("{ANY}", "", CLng(GoodbeyText.Duration), CLng("1"), ebEndResponseActionTerminate, CLogical("Yes"), "", "", "ResponseMode:All ProcessBackspace:Yes")
+
+	
+	End If
+
+	GoodbeyText.Run
+
+	 
+
+
+#If RUNTIME_VERSION_MAJOR > 1  Or (RUNTIME_VERSION_MAJOR = 1 And RUNTIME_VERSION_MINOR >= 2) Then
+	' Log clock timing information
+	c.SetAttrib "Clock.Information", Clock.Information
+#End If
+
+
+	c.Log
+End Sub
+
+
+
+
+
+
+
+'--------------------------------------------------------------------------
+' InitDevices
+'
+'--------------------------------------------------------------------------
+Sub InitDevices(c As Context)
+
+
+
+	SetOSThreadPriority 3
+
+
+	Set Display = New DisplayDevice
+	Display.Name = "Display"
+
+	Dim DisplayDisplayDeviceInfo As DisplayDeviceInfo
+	DisplayDisplayDeviceInfo.XRes = 1024
+	DisplayDisplayDeviceInfo.YRes = 768
+	DisplayDisplayDeviceInfo.ColorDepth = 32
+	DisplayDisplayDeviceInfo.RefreshRate = 0
+	DisplayDisplayDeviceInfo.NumPages = 0
+	
+	'Load values from context if they exist
+	If c.AttribExists(Display.Name & ".XRes") Then DisplayDisplayDeviceInfo.XRes = CLng(c.GetAttrib(Display.Name & ".XRes"))
+	If c.AttribExists(Display.Name & ".YRes") Then DisplayDisplayDeviceInfo.YRes = CLng(c.GetAttrib(Display.Name & ".YRes"))
+	If c.AttribExists(Display.Name & ".ColorDepth") Then DisplayDisplayDeviceInfo.ColorDepth = CLng(c.GetAttrib(Display.Name & ".ColorDepth"))
+
+	'Open the device, unless the context values indicate otherwise
+	Dim DisplayOpen As Boolean
+	DisplayOpen = True
+	If c.AttribExists(Display.Name & ".Open") Then DisplayOpen = CLogical(c.GetAttrib(Display.Name & ".Open"))
+	If DisplayOpen = True Then
+		Display.Open DisplayDisplayDeviceInfo
+		c.SetAttrib Display.Name & ".RefreshRate", Format$(Display.CalculatedRefreshRate, "0.000")
+	End If
+
+	Set Sound = New SoundDevice
+	Sound.Name = "Sound"
+
+	Dim SoundSoundOutDeviceInfo As SoundDeviceInfo
+	SoundSoundOutDeviceInfo.Channels = 2
+	SoundSoundOutDeviceInfo.SamplesPerSecond = 22050
+	SoundSoundOutDeviceInfo.BitsPerSample = 16
+	'Load values from context if they exist
+	If c.AttribExists(Sound.Name & ".Channels") Then SoundSoundOutDeviceInfo.Channels = CLng(c.GetAttrib(Sound.Name & ".Channels"))
+	If c.AttribExists(Sound.Name & ".SamplesPerSecond") Then SoundSoundOutDeviceInfo.SamplesPerSecond = CLng(c.GetAttrib(Sound.Name & ".SamplesPerSecond"))
+	If c.AttribExists(Sound.Name & ".BitsPerSample") Then SoundSoundOutDeviceInfo.BitsPerSample = CLng(c.GetAttrib(Sound.Name & ".BitsPerSample"))
+
+	Set Keyboard = New KeyboardDevice
+	Keyboard.Name = "Keyboard"
+
+	Dim KeyboardKeyboardDeviceInfo as KeyboardDeviceInfo
+	KeyboardKeyboardDeviceInfo.CollectionMode = ebPressesOnly
+	KeyboardKeyboardDeviceInfo.CapsLock = ebCapsLockOff
+	KeyboardKeyboardDeviceInfo.NumLock = ebNumLockOn
+	'Load values from context if they exist
+	If c.AttribExists(Keyboard.Name & ".CollectionMode") Then KeyboardKeyboardDeviceInfo.CollectionMode = CLng(c.GetAttrib(Keyboard.Name & ".CollectionMode"))
+	If c.AttribExists(Keyboard.Name & ".CapsLock") Then KeyboardKeyboardDeviceInfo.CapsLock = CLng(c.GetAttrib(Keyboard.Name & ".CapsLock"))
+	If c.AttribExists(Keyboard.Name & ".NumLock") Then KeyboardKeyboardDeviceInfo.NumLock = CLng(c.GetAttrib(Keyboard.Name & ".NumLock"))
+	If c.AttribExists(Keyboard.Name & ".EmulateDeviceName") Then KeyboardKeyboardDeviceInfo.EmulateDeviceName = c.GetAttrib(Keyboard.Name & ".EmulateDeviceName")
+
+	'Open the device, unless the context values indicate otherwise
+	Dim KeyboardOpen As Boolean
+	KeyboardOpen = True
+	If c.AttribExists(Keyboard.Name & ".Open") Then KeyboardOpen = CLogical(c.GetAttrib(Keyboard.Name & ".Open"))
+	If KeyboardOpen = True Then
+		Keyboard.Open KeyboardKeyboardDeviceInfo
+	End If
+
+	Set Mouse = New MouseDevice
+	Mouse.Name = "Mouse"
+
+	Dim MouseMouseDeviceInfo as MouseDeviceInfo
+	MouseMouseDeviceInfo.OpenMode = ebMouseOpenModeDirect
+	MouseMouseDeviceInfo.CollectionMode = ebPressesOnly
+	MouseMouseDeviceInfo.ShowCursor = False
+	'Load values from context if they exist
+	If c.AttribExists(Mouse.Name & ".OpenMode") Then MouseMouseDeviceInfo.OpenMode = CLng(c.GetAttrib(Mouse.Name & ".OpenMode"))
+	If c.AttribExists(Mouse.Name & ".CollectionMode") Then MouseMouseDeviceInfo.CollectionMode = CLng(c.GetAttrib(Mouse.Name & ".CollectionMode"))
+	If c.AttribExists(Mouse.Name & ".ShowCursor") Then MouseMouseDeviceInfo.ShowCursor = CLogical(c.GetAttrib(Mouse.Name & ".ShowCursor"))
+	If c.AttribExists(Mouse.Name & ".EmulateDeviceName") Then MouseMouseDeviceInfo.EmulateDeviceName = c.GetAttrib(Mouse.Name & ".EmulateDeviceName")
+
+	'Open the device, unless the context values indicate otherwise
+	Dim MouseOpen As Boolean
+	MouseOpen = True
+	If c.AttribExists(Mouse.Name & ".Open") Then MouseOpen = CLogical(c.GetAttrib(Mouse.Name & ".Open"))
+	If MouseOpen = True Then
+		Mouse.Open MouseMouseDeviceInfo
+	End If
+
+
+	SetOSThreadPriority 0
+
+End Sub
+
+
+
+'--------------------------------------------------------------------------
+' InitObjects
+'
+'--------------------------------------------------------------------------
+Sub InitObjects(c As Context)
+
+	Set ActionList = New List
+	ActionList.Name = "ActionList"
+	ActionList.Tag = "repeat mouse events"
+
+	'Initialization for ActionList
+	
+	Set ActionList.Order = New SequentialOrder
+	Set ActionList.Deletion = NoDeletion
+	ActionList.ResetEveryRun = True
+
+	' Create the column headings
+	ActionList.AddAttrib "Selected"
+	ActionList.AddAttrib "Moved"
+	ActionList.AddAttrib "CRod"
+	ActionList.Filename = ""
+	ActionList.LoadMethod = ebLoadMethodEmbedded
+
+	ActionList.Load
+
+	Set ActionList.TerminateCondition = Cycles(1)
+	Set ActionList.ResetCondition = Samples(1000)
+	ActionList.Reset
+	
+	Set MoveProc = New Procedure
+	MoveProc.Name = "MoveProc"
+	MoveProc.Tag = ""
+	MoveProc.Subroutine = "MoveProc_Run"
+
+	Set TrialProc = New Procedure
+	TrialProc.Name = "TrialProc"
+	TrialProc.Tag = ""
+	TrialProc.Subroutine = "TrialProc_Run"
+
+	Set TrialList = New List
+	TrialList.Name = "TrialList"
+	TrialList.Tag = ""
+
+	'Initialization for TrialList
+	
+	Set TrialList.Order = New SequentialOrder
+	Set TrialList.Deletion = NoDeletion
+	TrialList.ResetEveryRun = False
+
+	' Create the column headings
+	TrialList.AddAttrib "InitDiscs"
+	TrialList.AddAttrib "TargetDiscs"
+	TrialList.AddAttrib "Practice"
+	TrialList.AddAttrib "CorrectMoves"
+	TrialList.AddAttrib "TrialIntroState"
+	TrialList.Filename = ""
+	TrialList.LoadMethod = ebLoadMethodEmbedded
+
+	TrialList.Load
+
+	Set TrialList.TerminateCondition = Cycles(1)
+	Set TrialList.ResetCondition = Samples(10)
+	TrialList.Reset
+	
+	Set RootProc = New Procedure
+	RootProc.Name = "RootProc"
+	RootProc.Tag = ""
+	RootProc.Subroutine = "RootProc_Run"
+
+	Set GoodbeyText = New TextDisplay
+	GoodbeyText.Name = "GoodbeyText"
+	GoodbeyText.Tag = ""
+
+	Set GoodbeyTextEchoClients = New EchoClientCollection
+
+	InitTextDisplayDefaults GoodbeyText
+
+	GoodbeyText.Text = "The End"
+	GoodbeyText.Duration = CLng("-1")
+	GoodbeyText.TimingMode = ebTimingModeEvent
+	GoodbeyText.PreRelease = Val("0")
+
+	GoodbeyText.OnsetSync = 1
+	GoodbeyText.OffsetSync = 0
+
+	Set WaitForRespons = New TextDisplay
+	WaitForRespons.Name = "WaitForRespons"
+	WaitForRespons.Tag = ""
+
+	Set WaitForResponsEchoClients = New EchoClientCollection
+
+	InitTextDisplayDefaults WaitForRespons
+
+	WaitForRespons.Text = ""
+	WaitForRespons.BackStyle = "transparent"
+	WaitForRespons.Duration = CLng("-1")
+	WaitForRespons.TimingMode = ebTimingModeEvent
+	WaitForRespons.PreRelease = Val("0")
+
+	WaitForRespons.OnsetSync = 0
+	WaitForRespons.OffsetSync = 0
+
+	Set DelayRespons = New TextDisplay
+	DelayRespons.Name = "DelayRespons"
+	DelayRespons.Tag = ""
+
+	Set DelayResponsEchoClients = New EchoClientCollection
+
+	InitTextDisplayDefaults DelayRespons
+
+	DelayRespons.Text = "(press mouse button to continue)"
+	DelayRespons.Y = "bottom"
+	DelayRespons.Width = "80%"
+	DelayRespons.Height = "25%"
+	DelayRespons.YAlign = "bottom"
+	DelayRespons.ClearAfter = CLogical("Yes")
+	DelayRespons.Duration = CLng("-1")
+	DelayRespons.TimingMode = ebTimingModeEvent
+	DelayRespons.PreRelease = Val("0")
+
+	DelayRespons.OnsetSync = 1
+	DelayRespons.OffsetSync = 0
+
+	Set Title = New TextDisplay
+	Title.Name = "Title"
+	Title.Tag = ""
+
+	InitTextDisplayDefaults Title
+
+	Title.Text = "\n\n\n\nTower of Hanoi\n\n\n\n\n\n\n\n© 2004, Vrije Universiteit Amsterdam\nFPP - ITM\nPaul F.C. Groot\n"
+	Title.ForeColor = CColor("green")
+	Title.Duration = CLng("1000")
+	Title.TimingMode = ebTimingModeEvent
+	Title.PreRelease = Val("0")
+
+	Title.OnsetSync = 1
+	Title.OffsetSync = 0
+
+	Set Feedback = New Slide
+	Feedback.Name = "Feedback"
+	Feedback.Tag = ""
+	Feedback.Duration = CLng("2000")
+	Feedback.TimingMode = ebTimingModeEvent
+	Feedback.PreRelease = Val("0")
+
+	Feedback.OnsetSync = 1
+	Feedback.OffsetSync = 0
+
+	Set Feedback_State = New SlideState
+	Feedback_State.Name = "Default"
+
+	InitSlideStateDefaults Feedback_State
+
+
+	Feedback.States.Add Feedback_State, "Default"
+
+
+	Set Feedback_State = New SlideState
+	Feedback_State.Name = "Wrong"
+
+	InitSlideStateDefaults Feedback_State
+
+
+	Feedback.States.Add Feedback_State, "Wrong"
+
+
+	Set Feedback_SlideText = New SlideText
+	Feedback_SlideText.Name = "Text1"
+
+	InitSlideTextDefaults Feedback_SlideText
+
+	Feedback_SlideText.Text = "This was not the correct sequence.\nPlease try again."
+	Feedback_SlideText.X = "515"
+	Feedback_SlideText.Y = "360"
+	Feedback_SlideText.Width = "56%"
+	Feedback.States.Item("Wrong").Objects.Add Feedback_SlideText, "Text1"
+	Feedback.ActiveState = "Default"
+
+	Set OK = New TextDisplay
+	OK.Name = "OK"
+	OK.Tag = ""
+
+	InitTextDisplayDefaults OK
+
+	OK.Text = "OK"
+	OK.Duration = CLng("1000")
+	OK.TimingMode = ebTimingModeEvent
+	OK.PreRelease = Val("0")
+
+	OK.OnsetSync = 1
+	OK.OffsetSync = 0
+
+	Set TrialIntro = New Slide
+	TrialIntro.Name = "TrialIntro"
+	TrialIntro.Tag = ""
+	TrialIntro.Duration = CLng("1000")
+	TrialIntro.TimingMode = ebTimingModeEvent
+	TrialIntro.PreRelease = Val("0")
+
+	TrialIntro.OnsetSync = 1
+	TrialIntro.OffsetSync = 0
+
+	Set TrialIntro_State = New SlideState
+	TrialIntro_State.Name = "Default"
+
+	InitSlideStateDefaults TrialIntro_State
+
+
+	TrialIntro.States.Add TrialIntro_State, "Default"
+
+
+	Set TrialIntro_SlideText = New SlideText
+	TrialIntro_SlideText.Name = "Text1"
+
+	InitSlideTextDefaults TrialIntro_SlideText
+
+	TrialIntro_SlideText.Width = "45%"
+	TrialIntro.States.Item("Default").Objects.Add TrialIntro_SlideText, "Text1"
+
+	Set TrialIntro_State = New SlideState
+	TrialIntro_State.Name = "Practice1"
+
+	InitSlideStateDefaults TrialIntro_State
+
+
+	TrialIntro.States.Add TrialIntro_State, "Practice1"
+
+
+	Set TrialIntro_SlideText = New SlideText
+	TrialIntro_SlideText.Name = "Text1"
+
+	InitSlideTextDefaults TrialIntro_SlideText
+
+	TrialIntro_SlideText.Text = "We start with a practice trial.\n\nJust select a disk of the lower tower by clicking \nonce and then click on its destination"
+	TrialIntro_SlideText.Y = "51%"
+	TrialIntro_SlideText.Width = "100%"
+	TrialIntro_SlideText.Height = "39%"
+	TrialIntro.States.Item("Practice1").Objects.Add TrialIntro_SlideText, "Text1"
+
+	Set TrialIntro_State = New SlideState
+	TrialIntro_State.Name = "Practice2"
+
+	InitSlideStateDefaults TrialIntro_State
+
+
+	TrialIntro.States.Add TrialIntro_State, "Practice2"
+
+
+	Set TrialIntro_SlideText = New SlideText
+	TrialIntro_SlideText.Name = "Text1"
+
+	InitSlideTextDefaults TrialIntro_SlideText
+
+	TrialIntro_SlideText.Text = "Another practice trial which requires two moves"
+	TrialIntro_SlideText.Width = "100%"
+	TrialIntro_SlideText.Height = "39%"
+	TrialIntro.States.Item("Practice2").Objects.Add TrialIntro_SlideText, "Text1"
+
+
+End Sub
+
+
+'--------------------------------------------------------------------------
+' InitPackages
+'
+'--------------------------------------------------------------------------
+Sub InitPackages(c As Context)
+
+End Sub
+
+
+
+'--------------------------------------------------------------------------
+' InitGlobals
+'
+'--------------------------------------------------------------------------
+Sub InitGlobals(c As Context)
+
+End Sub
+
+
+
+'--------------------------------------------------------------------------
+
+
+'--------------------------------------------------------------------------
+'--------------------------------------------------------------------------
+' UnInitGlobals
+'--------------------------------------------------------------------------
+Sub UnInitGlobals()
+End Sub
+'--------------------------------------------------------------------------
+' UnInitDevices
+'--------------------------------------------------------------------------
+Sub UnInitDevices()
+	Display.Close
+	Set Display = Nothing
+
+	Keyboard.Close
+	Set Keyboard = Nothing
+
+	Mouse.Close
+	Set Mouse = Nothing
+
+End Sub
+
+
+'--------------------------------------------------------------------------
+'--------------------------------------------------------------------------
+' UnInitPackages
+'--------------------------------------------------------------------------
+Sub UnInitPackages()
+End Sub
+
+
+'--------------------------------------------------------------------------
+' UnInitObjects
+'
+'--------------------------------------------------------------------------
+Sub UnInitObjects()
+
+	Set ActionList = Nothing
+
+	Set MoveProc = Nothing
+
+	Set TrialProc = Nothing
+
+	Set TrialList = Nothing
+
+	Set RootProc = Nothing
+
+	Set GoodbeyText = Nothing
+
+	Set GoodbeyTextEchoClients = Nothing
+
+	Set WaitForRespons = Nothing
+
+	Set WaitForResponsEchoClients = Nothing
+
+	Set DelayRespons = Nothing
+
+	Set DelayResponsEchoClients = Nothing
+
+	Set Title = Nothing
+
+	Set Feedback = Nothing
+
+	Set OK = Nothing
+
+	Set TrialIntro = Nothing
+
+
+End Sub
+
+
+'--------------------------------------------------------------------------
+' Main
+'
+'--------------------------------------------------------------------------
+Sub Main()
+
+	' Create and initialize the default context, data file,
+	' and provide global access to the context.
+	Dim c As Context
+	Set c = New Context
+	Set c.DataFile = New DataFile
+	c.PushNewFrame
+	Set ebContext = c
+
+	' Set the log level names
+	c.SetLogLevelName 1, "Session"
+	c.SetLogLevelName 2, "Block"
+	c.SetLogLevelName 3, "Trial"
+	c.SetLogLevelName 4, "SubTrial"
+	c.SetLogLevelName 5, "LogLevel5"
+	c.SetLogLevelName 6, "LogLevel6"
+	c.SetLogLevelName 7, "LogLevel7"
+	c.SetLogLevelName 8, "LogLevel8"
+	c.SetLogLevelName 9, "LogLevel9"
+	c.SetLogLevelName 10, "LogLevel10"
+
+	' Set standard logging items
+	ebContext.SetAttrib "Experiment", "TOHx(Corrected-DKM)"
+	ebContext.SetAttrib "SessionDate", Date$
+	ebContext.SetAttrib "SessionTime", Time$
+
+	'Initialize global variables for packages
+	InitGlobals c
+
+	CreateDefaultPort
+
+	If Basic.OS = ebWin32 Then
+		WinActivate "E-Run Experiment Window"
+	End If
+
+	' Get the StartupInfo
+
+	' Set the defaults for all of the StartupInfo
+	If Not c.AttribExists("Subject") Then c.SetAttrib "Subject", "1"
+	If Not c.AttribExists("Session") Then c.SetAttrib "Session", "1"
+
+	' Determine if StartupInfo.UseDefaults exists and is True/False to override prompts for StartupInfo parameters
+	Dim bStartupInfoUseDefaults As Boolean
+	bStartupInfoUseDefaults = False
+	If c.AttribExists("StartupInfo.UseDefaults") Then bStartupInfoUseDefaults = CLogical(c.GetAttrib("StartupInfo.UseDefaults"))
+	If Not bStartupInfoUseDefaults Then
+
+		Dim vAnswer As Variant
+StartupInfo_Begin:
+
+StartupInfoPrompt_Subject:
+		vAnswer = AskBox("Please enter the Subject Number (1-32767, 0=No Data Logging):", c.GetAttrib("Subject"))
+		If Not IsEmpty(vAnswer) then
+			If Not IsNumeric(vAnswer) then
+				MsgBox "Please enter an integer value"
+				GoTo StartupInfoPrompt_Subject
+			ElseIf CLng(vAnswer) < 0 Then
+				MsgBox "The value for Subject must not be less than 0"
+				GoTo StartupInfoPrompt_Subject
+			ElseIf CLng(vAnswer) > 32767 Then
+				MsgBox "The value for Subject must be not be greater than 32767"
+				GoTo StartupInfoPrompt_Subject
+			End If
+		Else
+			GoTo ExperimentAbort
+		End if
+
+		c.SetAttrib "Subject", CStr(vAnswer)
+
+StartupInfoPrompt_Session:
+		vAnswer = AskBox("Please enter the Session Number (1-32767):", c.GetAttrib("Session"))
+		If Not IsEmpty(vAnswer) then
+			If Not IsNumeric(vAnswer) then
+				MsgBox "Please enter an integer value"
+				GoTo StartupInfoPrompt_Session
+			ElseIf CLng(vAnswer) < 1 Then
+				MsgBox "The value for Session must not be less than 1"
+				GoTo StartupInfoPrompt_Session
+			ElseIf CLng(vAnswer) > 32767 Then
+				MsgBox "The value for Session must be not be greater than 32767"
+				GoTo StartupInfoPrompt_Session
+			End If
+		Else
+			GoTo ExperimentAbort
+		End if
+
+		c.SetAttrib "Session", CStr(vAnswer)
+
+		' Display the summary
+		Dim strSummary As String
+		strSummary = "Subject:    " & c.GetAttrib("Subject") & "\n"
+		strSummary = strSummary & "Session:    " & c.GetAttrib("Session") & "\n"
+		strSummary = strSummary & "\nContinue with the above startup info?"
+
+		Dim nSummaryAnswer As Integer
+		nSummaryAnswer = MsgBox(strSummary, ebYesNoCancel + ebQuestion, "Summary of Startup Info")
+		If nSummaryAnswer = ebNo Then
+				GoTo StartupInfo_Begin
+		ElseIf nSummaryAnswer = ebCancel Then
+				GoTo ExperimentAbort
+		End If
+
+	End If
+
+
+	'If the attribute Clock.Scale.Override exists
+	'  then use it for to set the Clock.Scale value
+	If c.AttribExists("Clock.Scale.Override") Then
+		Clock.Scale = CDbl(c.GetAttrib("Clock.Scale.Override"))
+	End If
+
+	' Set the Filenames for the data files
+	Dim strFilenameRecovery As String
+	Dim strFilenameEDAT As String
+
+	'If the attribute DataFile.Filename.Override exists
+	'  then use it for the .txt and .edat filenames
+	If c.AttribExists("DataFile.Filename.Override") Then
+
+		' Set the default Data Filename
+		strFilenameRecovery = CStr(c.GetAttrib("DataFile.Filename.Override")) & ".txt"
+		strFilenameEDAT = CStr(c.GetAttrib("DataFile.Filename.Override")) & ".edat"
+
+	Else
+
+		' Set the default Data Filename
+		strFilenameRecovery = CStr(c.GetAttrib("Experiment")) & "-" & CStr(c.GetAttrib("Subject")) & "-" & CStr(c.GetAttrib("Session")) & ".txt"
+		strFilenameEDAT = CStr(c.GetAttrib("Experiment")) & "-" & CStr(c.GetAttrib("Subject")) & "-" & CStr(c.GetAttrib("Session")) & ".edat"
+
+	End If
+
+	'Set the name of the data file
+	c.DataFile.Filename = strFilenameRecovery
+
+	' If we are logging data, then prompt to overwrite the data file if it exists
+	If CLng(c.GetAttrib("Subject")) <> 0 Then
+		If FileExists(c.DataFile.Filename) Or FileExists(strFilenameEDAT) Then
+			If ebYes <> MsgBox("WARNING: The data file and/or recovery file already exists:\nFILE: " & c.DataFile.Filename & "\n\nDo you want to overwrite?", ebYesNo + ebQuestion) Then
+				GoTo ExperimentAbort
+			End If
+		End If
+	End If
+
+	' Set defaults for RandomSeed and GroupNumber if StartupInfo did not assign their values
+	If Not c.AttribExists("RandomSeed") Then c.SetAttrib "RandomSeed", PRNG.GetSeed()
+	If Not c.AttribExists("Group") Then c.SetAttrib "Group", "1"
+
+	'Set the random seed
+	Randomize CLng(c.GetAttrib("RandomSeed"))
+
+	' Initialize all system devices, packages, and objects
+	InitDevices c
+	InitPackages c
+	InitObjects c
+
+	' If we are logging data, then open the datafile
+	If CLng(c.GetAttrib("Subject")) <> 0 Then
+		c.DataFile.Open
+		c.LogHeader
+	End If
+
+
+
+#If RUNTIME_VERSION_MAJOR > 1  Or (RUNTIME_VERSION_MAJOR = 1 And RUNTIME_VERSION_MINOR >= 2) Then
+	' Log clock timing information
+	c.SetAttrib "Clock.Information", Clock.Information
+#End If
+
+	' Start the running of the Experiment
+	RootProc.Run c
+
+	' Clean up the context and close the datafile
+	If CLng(c.GetAttrib("Subject")) <> 0 Then
+		c.DataFile.Close
+		' Attempt to convert the recovery file into a data file
+		Dim nConvert As Long
+		nConvert = c.DataFile.Convert(ebProgressSimple)
+		If nConvert = 0 Then
+			' Settings in E-Studio are set to not remove E-Recovery file
+		Else
+			' The datafile failed to convert!
+			MsgBox "ERROR: The datafile did not convert!\nFILE: " & c.DataFile.Filename & "\n\nIt is recommended that you recover your data with the E-Recovery utility"
+			MsgBox c.DataFile.GetLastErrorMessage()
+		End If
+	End If
+ExperimentFinish:
+
+	UnInitObjects
+
+	UnInitPackages
+	UnInitDevices
+
+	UnInitGlobals
+
+ExperimentAbort:
+
+	' Clean up the context
+	c.PopFrame
+	Set c = Nothing
+	Set ebContext = Nothing
+
+	DestroyDefaultPort
+
+End Sub
+
+
+[DataSection_ActionList(1)]
+Weight	Nested	Procedure	Selected	Moved	CRod
+1000		MoveProc	-1	-1	0\0
+
+[DataSection_TrialList(1)]
+Weight	Nested	Procedure	InitDiscs	TargetDiscs	Practice	CorrectMoves	TrialIntroState
+1		TrialProc	3_0_0	0_0_3	1	1-3	Practice1
+1		TrialProc	43_0_21	431_2_0	1	3-1,3-2	Practice2
+1		TrialProc	4_321_0	42_3_1	0	2-3,2-1	Default
+1		TrialProc	41_3_2	0_321_4	0	3-2,1-2,1-3	Default
+1		TrialProc	4_0_321	2_4_31	0	1-2,3-2,3-1,2-3	Default
+1		TrialProc	2_41_3	0_4321_0	0	2-1,3-2,1-3,1-2,3-2	Default
+1		TrialProc	4_3_21	42_1_3	0	3-2,3-1,2-1,2-3,1-2	Default
+1		TrialProc	0_31_42	1_0_432	0	3-1,2-1,2-3,1-2,1-3,2-1	Default
+1		TrialProc	4321_0_0	41_0_32	0	1-3,1-2,3-2,1-3,2-1,2-3	Default
+1		TrialProc	1_4_32	1_43_2	0	1-2,3-1,2-1,3-2,1-2,1-3,2-1	Default\0
